@@ -1,0 +1,11 @@
+name: linear-regression
+version: 0.1.0
+description: |
+  Computes a linear least squares regression line. Linear correlation.
+
+authors:
+  - Michael F. Robbins <mrobbins@alum.mit.edu>
+
+crystal: 1.5.1
+
+license: MIT
