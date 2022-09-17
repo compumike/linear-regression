@@ -1,6 +1,8 @@
 # linear-regression
 
-**LinearRegression** for [Crystal](https://crystal-lang.org/)
+**LinearRegression** for [Crystal](https://crystal-lang.org/) computes a linear least squares regression line (linear correlation).
+
+The computation is performed in linear time, proportional to the length of the input data.
 
 **LinearRegression** is currently used in production on [Total Real Returns](https://totalrealreturns.com/).
 
@@ -21,7 +23,22 @@ dependencies:
 ```crystal
 require "linear-regression"
 
-LinearRegression.FIXME
+linreg = LinearRegression.new([-1.0, 0.0, 1.0], [4.0, 4.0, 5.0])
+
+# Examine properties of the fit:
+linreg.slope                # 0.5
+linreg.intercept            # 4.33333333
+linreg.pearson_r            # 0.8660254038
+linreg.pearson_r_squared    # 0.75
+
+# Evaluate the regression line at a given x coordinate:
+linreg.at(0.0)              # 4.33333333
+linreg.at(10.0)             # 9.33333333
+
+# Serialize and deserialize the fit: (does not serialize raw data points)
+j = linreg.to_json          # '{"n":3,...}'
+linreg2 = LinearRegression.from_json(j)
+linreg2.slope               # 0.5
 ```
 
 ## Development
